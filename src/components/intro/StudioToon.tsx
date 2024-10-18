@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useModal } from "@hooks/modal.hook";
+import useIntersectionObserver from "@hooks/scroll.hook";
 import SectionTitle from "@components/commons/SectionTitle";
 import { StudioToonBox, StudioToonWrapper, SubTitle, ToonDetail, ToonItemWrapper, ToonItem, ToonInfo, ToonVisual } from "@styles/intro/index.style";
 import Modal from "@components/commons/Modal";
@@ -10,6 +11,7 @@ const StudioToon: FC<{ scrollY: number }> = ({ scrollY }) => {
     const [childrenCount, setChildrenCount] = useState(0);
     const [itemId, setItemId] = useState<number | null>(null);
     const { isModalOpen, toggleModal } = useModal({ itemNumber: itemId || 0, setItemId });
+    const { targetRefs, entries } = useIntersectionObserver(0.6);
 
     useEffect(() => {
         const toonItemWrapper = document.querySelector("#toon-item-wrapper");
@@ -38,24 +40,24 @@ const StudioToon: FC<{ scrollY: number }> = ({ scrollY }) => {
 
 
     return (
-        <StudioToonBox>
+        <StudioToonBox  ref={(el) => (targetRefs.current[0] = el as HTMLDivElement)} id="toon">
             <Modal type="toon" itemId={itemId || 0} modalOpen={isModalOpen} toggleModal={toggleModal} />
 
-            <StudioToonWrapper>
+            <StudioToonWrapper  className={entries["toon"] ? "scrolled" : ""}>
                 <SectionTitle text={{ title: "Studio EDDA", subTitle: "About", }} direction="left" />
 
-                <SubTitle>
+                <SubTitle className={entries["toon"] ? "scrolled" : ""}>
                     스튜디오 에다의 개발 트리비아
                 </SubTitle>
 
-                <ToonDetail>
+                <ToonDetail className={entries["toon"] ? "scrolled" : ""}>
                     모두가 기다리는 동안 스튜디오 에다에서는 <br />
                     어떤 일이 일어나고 있을까요? <br />
                     스튜디오 에다의 좌충우돌 개발일지, <br />
                     4컷 만화에 담았습니다!
                 </ToonDetail>
 
-                <ToonItemWrapper childrenCount={childrenCount} id="toon-item-wrapper">
+                <ToonItemWrapper childrenCount={childrenCount} id="toon-item-wrapper" className={entries["toon"] ? "scrolled" : ""}>
                     <ToonItem onClick={() => handleItemClick(0)}>
                         <img src="/images/toon-thumb01.png" alt="Studio EDDA" />
                         <ToonInfo>
