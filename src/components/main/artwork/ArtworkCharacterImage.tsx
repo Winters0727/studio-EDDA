@@ -10,16 +10,20 @@ import type { FC } from "react";
 interface ArtworkCharacterImageProps {
   name: string;
   path: string;
+  color: string;
+  className?: string;
 }
 
 const ArtworkCharacterImage: FC<ArtworkCharacterImageProps> = ({
   name,
   path,
+  color,
+  className,
 }) => {
   return (
-    <CharacterImageWrapper>
+    <CharacterImageWrapper className={className}>
       <CharacterImage src={path} alt={`${name} 스탠딩 이미지`} />
-      <ArtworkCharacterButtons />
+      <ArtworkCharacterButtons color={color} />
     </CharacterImageWrapper>
   );
 };

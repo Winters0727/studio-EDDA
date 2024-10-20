@@ -2,6 +2,9 @@ import { SCREEN } from "@consts/style";
 import styled from "styled-components";
 
 // 아트워크 캐릭터 표정 버튼
+interface RhobusButtonProps {
+  $color: string;
+}
 
 export const FaceButtonsWrapper = styled.aside`
   display: flex;
@@ -27,16 +30,17 @@ export const FaceButtonsWrapper = styled.aside`
   }
 `;
 
-export const FaceButton = styled.button`
+export const FaceButton = styled.button<RhobusButtonProps>`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 140px;
   height: 125px;
   padding: 0;
-  border: 5px solid #7a69bc;
+  border: 5px solid ${({ $color }) => $color};
   box-sizing: border-box;
   cursor: pointer;
+  transition: all 1s;
 
   @media screen and (max-width: ${SCREEN.pc}) {
     width: 120px;
@@ -122,18 +126,18 @@ export const RhobusButtonsWrapper = styled.div`
   }
 
   @media screen and (max-width: ${SCREEN.mobile}) {
-    right: 140px;
+    right: 80px;
   }
 `;
 
-export const RhobusButton = styled.button`
+export const RhobusButton = styled.button<RhobusButtonProps>`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 80px;
   height: 80px;
   padding: 0;
-  border: 8px solid #7a69bc;
+  border: 8px solid ${({ $color }) => $color};
   box-sizing: border-box;
   cursor: pointer;
 

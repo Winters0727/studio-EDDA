@@ -1,4 +1,5 @@
 import SectionTitle from "@components/commons/SectionTitle";
+import useIntersectionObserver from "@hooks/scroll.hook";
 
 import {
   SynopsysTitle,
@@ -9,16 +10,23 @@ import {
   SynopsysTitleBackground,
 } from "@styles/main/synopsys-section.style";
 
-import SynopsysImage from "@assets/images/main/synopsys-background.png";
+import SynopsysImage from "@assets/images/main/synopsys-background.jpg";
 
 import type { FC } from "react";
 import { COLOR } from "@consts/style";
 
 const SynopsysSection: FC = () => {
-  const OPACITY = 0.15;
+  const { targetRefs, entries } = useIntersectionObserver(0.6);
+  const OPACITY = 0.25;
 
   return (
-    <SynopsysWrapper $image={SynopsysImage} $opacity={OPACITY}>
+    <SynopsysWrapper
+      $image={SynopsysImage}
+      $opacity={OPACITY}
+      ref={(el) => (targetRefs.current[0] = el as HTMLDivElement)}
+      id="synopsys"
+      className={entries["synopsys"] ? "scrolled" : ""}
+    >
       <SectionTitle
         text={{
           title: "Synopsys",
@@ -29,7 +37,7 @@ const SynopsysSection: FC = () => {
         }}
         direction="left"
       />
-      <SynopsysTitleWrapper>
+      <SynopsysTitleWrapper className={entries["synopsys"] ? "scrolled" : ""}>
         <SynopsysTitle className="non-mobile">
           낙천한 신들의 아이돌 도전기!
         </SynopsysTitle>
@@ -39,7 +47,7 @@ const SynopsysSection: FC = () => {
         </SynopsysTitle>
         <SynopsysTitleBackground />
       </SynopsysTitleWrapper>
-      <SynopsysParagraph>
+      <SynopsysParagraph className={entries["synopsys"] ? "scrolled" : ""}>
         <SynopsysText className="non-mobile">
           'IDOL'우상이란 본디 신의 형상을 의미한다.
           <br />

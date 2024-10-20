@@ -1,4 +1,5 @@
 import SectionTitle from "@components/commons/SectionTitle";
+import useIntersectionObserver from "@hooks/scroll.hook"; // 커스텀 훅 import
 
 import { useArtworkContext } from "@contexts/main/artwork.context";
 
@@ -18,9 +19,14 @@ import type { FC } from "react";
 
 const ArtworkSection: FC = () => {
   const { curChar: char } = useArtworkContext();
+  const { targetRefs, entries } = useIntersectionObserver(0.5);
 
   return (
-    <ArtworkWrapper>
+    <ArtworkWrapper
+      ref={(el) => (targetRefs.current[0] = el as HTMLDivElement)}
+      id="artwork"
+      className={entries["artwork"] ? "scrolled" : ""}
+    >
       <SectionTitle
         text={{
           title: "Art Work",
@@ -33,8 +39,8 @@ const ArtworkSection: FC = () => {
         }}
         direction="right"
       />
-      <ArtworkContent>
-        <ArtworkArticle>
+      <ArtworkContent className={entries["artwork"] ? "scrolled" : ""}>
+        <ArtworkArticle className={entries["artwork"] ? "scrolled" : ""}>
           <ArtworkTitle
             texts={{
               title: char.name,
@@ -53,11 +59,16 @@ const ArtworkSection: FC = () => {
               shadow: char.color.speechBubbleShadow,
             }}
           />
-          <ArtworkFaceButtons paths={char.imagePaths.faces} />
+          <ArtworkFaceButtons
+            paths={char.imagePaths.faces}
+            color={char.color.main}
+          />
         </ArtworkArticle>
         <ArtworkCharacterImage
           name={char.name}
           path={char.imagePaths.standing}
+          color={char.color.main}
+          className={entries["artwork"] ? "scrolled" : ""}
         />
       </ArtworkContent>
       <ArtworkBackground $color={char.color.background} />

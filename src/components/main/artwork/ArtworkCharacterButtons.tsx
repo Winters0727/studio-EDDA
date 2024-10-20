@@ -10,7 +10,11 @@ import {
 
 import type { FC } from "react";
 
-const ArtworkCharacterButtons: FC = () => {
+interface ArtworkCharacterImageProps {
+  color: string;
+}
+
+const ArtworkCharacterButtons: FC<ArtworkCharacterImageProps> = ({ color }) => {
   const { handleClickCharBtn } = useArtworkContext();
 
   return (
@@ -19,6 +23,7 @@ const ArtworkCharacterButtons: FC = () => {
         <RhobusButton
           key={`${index + 1}번 캐릭터 버튼`}
           onClick={handleClickCharBtn(index)}
+          $color={color}
         >
           <RhobusButtonImage src={image} alt={`${index + 1}번 캐릭터 이미지`} />
         </RhobusButton>

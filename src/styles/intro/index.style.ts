@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { CommonPageWrapper, CommonPage } from "@styles/index.style";
-import { COLOR, FONT, RADIUS, SCREEN_MAX_WIDTH } from "@consts/style";
+import { COLOR, FONT, BORDER_RADIUS, SCREEN_MAX_WIDTH } from "@consts/style";
 import { TitleWrapper } from "@styles/commons/section-title.style";
 
 export const PageWrapper = styled.div`
@@ -112,7 +112,7 @@ export const IntroMainWrapper = styled.div`
                 transform: translateX(50px);
             }
             @media (max-width: 767px) {
-                transform: translateX(-30px);
+                transform: translateX(40px);
             }
         }
         p:last-of-type {
@@ -128,7 +128,7 @@ export const IntroMainText = styled.p`
     color: #222;
     text-align: center;
     @media (max-width: 768px) {
-        font-size: 48px;
+        font-size: 32px;
     }
 `;
 export const IntroSubText = styled.p`
@@ -199,6 +199,17 @@ export const SubTitle = styled.p`
         font-size: 16px;
         margin-top: 50px;
     }
+
+    transform:  translateX(-50px);
+    opacity: 0;
+    transition: all 1s;
+    transition-delay: 0.8s;
+
+    &.scrolled {
+        transform:  translateX(0);
+        opacity: 1;
+    }
+
 `;
 
 export const IntroBoxWrapper = styled.div`
@@ -388,11 +399,11 @@ export const FullBoxLogo = styled.div`
     max-width: 1170px;
     margin: 0 auto 50px;
     position: relative;
-    border-radius: ${RADIUS.pc};
+    border-radius: ${BORDER_RADIUS.pc};
     background: ${COLOR.mainColor};
 
     @media (max-width: 1169px) {
-        border-radius: ${RADIUS.tablet};
+        border-radius: ${BORDER_RADIUS.tablet};
         height: 300px;
     }
 
@@ -533,12 +544,24 @@ export const StudioToonBox = styled.div`
     position: relative;
     width: 100%;
     overflow: hidden;
+
 `;
 
 export const StudioToonWrapper = styled.div`
     padding: 200px 0;
     position: relative;
     z-index: 10;
+
+    & > div:first-of-type {
+        opacity: 0;
+        transform: translateY(-30px);
+        transition: all .8s;
+    }
+
+    &.scrolled > div:first-of-type {
+        opacity: 1;
+        transform: translateY(0);
+    }
 `;
 
 export const ToonDetail = styled.p`
@@ -548,6 +571,15 @@ export const ToonDetail = styled.p`
     margin-top: 60px;
     font-weight: 400;
     line-height: 1.6;
+    transform:  translateX(-50px);
+    opacity: 0;
+    transition: all 1s;
+    transition-delay: 0.8s;
+
+    &.scrolled {
+        transform:  translateX(0);
+        opacity: 1;
+    }
 `;
 
 export const ToonItemWrapper = styled.div.attrs((props) => ({}))<{ childrenCount: number }>`
@@ -559,6 +591,15 @@ export const ToonItemWrapper = styled.div.attrs((props) => ({}))<{ childrenCount
     gap: 30px;
     position: relative;
     box-sizing: border-box;
+    transform:  translateX(50px);
+    opacity: 0;
+    transition: all 1s;
+    transition-delay: 0.8s;
+
+    &.scrolled {
+        transform:  translateX(0);
+        opacity: 1;
+    }    
 
     @media (max-width: 1169px) {
         width: 66.66%;
@@ -728,7 +769,7 @@ export const ToonItemWrapper = styled.div.attrs((props) => ({}))<{ childrenCount
 export const ToonItem = styled.a`
     width: 25%;
     height: 300px;
-    border-radius: ${RADIUS.pc};
+    border-radius: ${BORDER_RADIUS.pc};
     background: #fff;
     position: relative;
     cursor: pointer;
@@ -746,14 +787,14 @@ export const ToonItem = styled.a`
         width: 100%;
         height: 100%;
         object-fit: cover;
-        border-radius: ${RADIUS.pc};
+        border-radius: ${BORDER_RADIUS.pc};
 
         @media (max-width: 1169px) {
-            border-radius: ${RADIUS.tablet};
+            border-radius: ${BORDER_RADIUS.tablet};
         }
 
         @media (max-width: 768px) {
-            border-radius: ${RADIUS.mobile};
+            border-radius: ${BORDER_RADIUS.mobile};
         }
     }
 
@@ -807,7 +848,7 @@ export const ToonInfo = styled.div`
     width: 100%;
     height: 60px;
     background: ${COLOR.mainColor};
-    border-radius: 0 0 ${RADIUS.pc} ${RADIUS.pc};
+    border-radius: 0 0 ${BORDER_RADIUS.pc} ${BORDER_RADIUS.pc};
     color: #fff;
     position: absolute;
     bottom: 0;
@@ -824,11 +865,11 @@ export const ToonInfo = styled.div`
     }
 
     @media (max-width: 1169px) {
-        border-radius: 0 0 ${RADIUS.tablet} ${RADIUS.tablet};
+        border-radius: 0 0 ${BORDER_RADIUS.tablet} ${BORDER_RADIUS.tablet};
     }
 
     @media (max-width: 768px) {
-        border-radius: 0 0 ${RADIUS.mobile} ${RADIUS.mobile};
+        border-radius: 0 0 ${BORDER_RADIUS.mobile} ${BORDER_RADIUS.mobile};
     }
 `;
 

@@ -32,7 +32,7 @@ const IntroPage: FC = () => {
                     <title>{TITLE}</title>
                 </Helmet>
 
-                <MainVisual scrollY={scrollY} />
+                <MainVisual />
 
                 <StudioInfo scrollY={scrollY} />
 

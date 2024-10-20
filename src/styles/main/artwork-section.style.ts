@@ -22,6 +22,17 @@ export const ArtworkWrapper = styled.section`
   article {
     z-index: 2;
   }
+
+  & > div:first-child {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: transform 0.8s, opacity 0.8s;
+  }
+
+  &.scrolled > div:first-child {
+    opacity: 1;
+    transform: none;
+  }
 `;
 
 export const ArtworkBackground = styled.div<{
@@ -80,5 +91,24 @@ export const ArtworkArticle = styled.article`
 
   @media screen and (max-width: ${SCREEN.mobileWide}) {
     min-width: max(215px, 50vw - 10px);
+  }
+
+  & > div {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 1s ease-out;
+    transition-delay: 1.4s;
+  }
+
+  & > aside {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 1s ease-out;
+    transition-delay: 1.4s;
+  }
+
+  &.scrolled > * {
+    opacity: 1;
+    transform: none;
   }
 `;

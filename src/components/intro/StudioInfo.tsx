@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React from "react";
 import SectionTitle from "@components/commons/SectionTitle";
 import {
     StudioInfoBox,
@@ -15,61 +15,14 @@ import {
     StarsLeft,
     StarsRight,
 } from "@styles/intro/index.style";
-
-// Throttling 함수
-function throttle(fn: Function, wait: number) {
-    let inThrottle: boolean;
-    return function (this: any, ...args: any[]) {
-        if (!inThrottle) {
-            fn.apply(this, args);
-            inThrottle = true;
-            setTimeout(() => (inThrottle = false), wait);
-        }
-    };
-}
+import useIntersectionObserver from "@hooks/scroll.hook"; // 커스텀 훅 import
 
 function StudioInfo({ scrollY }: { scrollY: number }) {
-    const StudioTitleRef = useRef<HTMLDivElement>(null);
-    const StudioBoxLeftRef = useRef<HTMLDivElement>(null);
-    const StudioBoxRightRef = useRef<HTMLDivElement>(null);
-    const StudioBoxFullRef = useRef<HTMLDivElement>(null);
-
-    const [isTitleScrolled, setIsTitleScrolled] = useState(false);
-    const [isBoxLeftScrolled, setIsBoxLeftScrolled] = useState(false);
-    const [isBoxRightScrolled, setIsBoxRightScrolled] = useState(false);
-    const [isBoxFullScrolled, setIsBoxFullScrolled] = useState(false);
-
-    const handleScroll = useCallback(() => {
-        const updateScrollState = (ref: React.RefObject<HTMLDivElement>, setState: React.Dispatch<React.SetStateAction<boolean>>, currentState: boolean) => {
-            if (ref.current) {
-                const yPos = ref.current.getBoundingClientRect().top + window.scrollY;
-                const triggerPosition = window.scrollY; 
-                
-                if (!currentState && window.scrollY >= yPos - triggerPosition) {
-                    setState(true);
-                }
-            }
-        };
-
-        updateScrollState(StudioTitleRef, setIsTitleScrolled, isTitleScrolled);
-        updateScrollState(StudioBoxLeftRef, setIsBoxLeftScrolled, isBoxLeftScrolled);
-        updateScrollState(StudioBoxRightRef, setIsBoxRightScrolled, isBoxRightScrolled);
-        updateScrollState(StudioBoxFullRef, setIsBoxFullScrolled, isBoxFullScrolled);
-    }, [isTitleScrolled, isBoxLeftScrolled, isBoxRightScrolled, isBoxFullScrolled]);
-
-    useEffect(() => {
-        const throttledScroll = throttle(handleScroll, 100);
-        window.addEventListener("scroll", throttledScroll);
-        handleScroll(); // 컴포넌트 마운트 후 초기 상태 설정
-
-        return () => {
-            window.removeEventListener("scroll", throttledScroll);
-        };
-    }, [handleScroll]);
+    const { targetRefs, entries } = useIntersectionObserver(0.4);
 
     return (
         <StudioInfoBox>
-            <StudioInfoWrapper ref={StudioTitleRef} className={isTitleScrolled ? "scrolled" : ""}>
+            <StudioInfoWrapper ref={el => targetRefs.current[0] = el} id="studio-title" className={entries["studio-title"] ? "scrolled" : ""}>
                 <SectionTitle
                     text={{
                         title: "Studio EDDA",
@@ -81,7 +34,7 @@ function StudioInfo({ scrollY }: { scrollY: number }) {
                 <SubTitle>자신의 경험과 이상을 꿈꾸어라</SubTitle>
 
                 <IntroBoxWrapper>
-                    <IntroHarfBoxLeft ref={StudioBoxLeftRef} className={isBoxLeftScrolled ? "scrolled" : ""}>
+                    <IntroHarfBoxLeft ref={el => targetRefs.current[1] = el} id="studio-left" className={entries["studio-left"] ? "scrolled" : ""}>
                         <StudioLogo>
                             <img src="/images/studio-logo-2.png" alt="Studio EDDA" />
                         </StudioLogo>
@@ -91,7 +44,7 @@ function StudioInfo({ scrollY }: { scrollY: number }) {
                             일본어로 가지를 뜻하는 <strong>에다(えだ)</strong>에서 따왔습니다.
                         </p>
                     </IntroHarfBoxLeft>
-                    <IntroHarfBoxRight ref={StudioBoxRightRef} className={isBoxRightScrolled ? "scrolled" : ""}>
+                    <IntroHarfBoxRight ref={el => targetRefs.current[2] = el} id="studio-right" className={entries["studio-right"] ? "scrolled" : ""}>
                         <StudioLogo>
                             <img src="/images/studio-logo-1.png" alt="Studio EDDA" />
                         </StudioLogo>
@@ -107,7 +60,7 @@ function StudioInfo({ scrollY }: { scrollY: number }) {
                     </IntroHarfBoxRight>
                 </IntroBoxWrapper>
 
-                <IntroFullBox ref={StudioBoxFullRef} className={isBoxFullScrolled ? "scrolled" : ""}>
+                <IntroFullBox ref={el => targetRefs.current[3] = el} id="studio-full" className={entries["studio-full"] ? "scrolled" : ""}>
                     <FullBoxLogo>
                         <StarsLeft />
                         <img src="/images/studio-logo-full.png" alt="Studio EDDA" />
@@ -119,8 +72,8 @@ function StudioInfo({ scrollY }: { scrollY: number }) {
                     </p>
                 </IntroFullBox>
             </StudioInfoWrapper>
-            <StudioVisualBehind className={isBoxFullScrolled ? "scrolled" : ""}></StudioVisualBehind>
-            <StudioVisualFoward className={isBoxFullScrolled ? "scrolled" : ""}></StudioVisualFoward>
+            <StudioVisualBehind className={entries["studio-full"] ? "scrolled" : ""}></StudioVisualBehind>
+            <StudioVisualFoward className={entries["studio-full"] ? "scrolled" : ""}></StudioVisualFoward>
         </StudioInfoBox>
     );
 }

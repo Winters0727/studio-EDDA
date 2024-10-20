@@ -1,37 +1,17 @@
-import React, { useRef, useState, useEffect } from "react";
 import SectionTitle from "@components/commons/SectionTitle";
 import { IntroMain, IntroMainImage, IntroMainVisual, IntroMainWrapper, IntroMainText, IntroSubText, IntroDetail } from "@styles/intro/index.style";
+import useIntersectionObserver from "@hooks/scroll.hook";
 
-const MainVisual = ({ scrollY }: { scrollY: number }) => {
-    const introMainRef = useRef<HTMLDivElement>(null);
-    const [isScrolled, setIsScrolled] = useState(false);
+import type { FC } from "react";
 
-    useEffect(() => {
-        const handleScroll = () => {
-            if (introMainRef.current) {
-                const introMainY = introMainRef.current.getBoundingClientRect().top + window.scrollY;
-                if (window.scrollY >= introMainY) {
-                    setIsScrolled(true);
-                } else {
-                    setIsScrolled(false);
-                }
-            }
-        };
-
-        window.addEventListener("scroll", handleScroll);
-        // 컴포넌트가 마운트된 후 한 번 호출하여 초기 상태 설정
-        handleScroll();
-
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, []);
+const MainVisual: FC = () => {
+    const { targetRefs, entries } = useIntersectionObserver(0.1);
 
     return (
-        <IntroMain ref={introMainRef}>
-            <IntroMainImage  className={isScrolled ? "scrolled" : ""}></IntroMainImage>
-            <IntroMainVisual  className={isScrolled ? "scrolled" : ""}></IntroMainVisual>
-            <IntroMainWrapper className={isScrolled ? "scrolled" : ""}>
+        <IntroMain ref={(el) => (targetRefs.current[0] = el)} id="main-visual" className={entries["main-visual"] ? "scrolled" : ""}>
+            <IntroMainImage className={entries["main-visual"] ? "scrolled" : ""}></IntroMainImage>
+            <IntroMainVisual className={entries["main-visual"] ? "scrolled" : ""}></IntroMainVisual>
+            <IntroMainWrapper className={entries["main-visual"] ? "scrolled" : ""}>
                 <IntroMainText> Dream </IntroMainText>
                 <IntroSubText> Your </IntroSubText>
                 <SectionTitle text={{ title: "Xperience", subTitle: "Studio" }} direction="left" />
