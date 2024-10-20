@@ -5,6 +5,7 @@ import { useArtworkContext } from "@contexts/main/artwork.context";
 
 import ArtworkTitle from "./artwork/ArtworkTitle";
 import ArtworkSpeechBubble from "./artwork/ArtworkSpeechBubble";
+import ArtworkCharacterButtons from "./artwork/ArtworkCharacterButtons";
 import ArtworkFaceButtons from "./artwork/ArtWorkFaceButtons";
 import ArtworkCharacterImage from "./artwork/ArtworkCharacterImage";
 
@@ -67,9 +68,10 @@ const ArtworkSection: FC = () => {
         <ArtworkCharacterImage
           name={char.name}
           path={char.imagePaths.standing}
-          color={char.color.main}
+          translateX={char.image.translateX}
           className={entries["artwork"] ? "scrolled" : ""}
         />
+        <ArtworkCharacterButtons color={char.color.main} />
       </ArtworkContent>
       <ArtworkBackground $color={char.color.background} />
     </ArtworkWrapper>

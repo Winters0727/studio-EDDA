@@ -74,8 +74,9 @@ export const RhobusButtonsWrapper = styled.div`
     "c d" 50%;
   gap: 16px;
   transform: rotate(45deg);
-  right: 20px;
-  bottom: 130px;
+  left: min(70vw, calc(288px + 50vw));
+  bottom: 70px;
+  z-index: 4;
 
   & > :first-child {
     transform: translate(0, 8px);
@@ -93,13 +94,8 @@ export const RhobusButtonsWrapper = styled.div`
     transform: translate(0, 0);
   }
 
-  @media screen and (max-width: ${SCREEN.pc}) {
-    right: min(max(20px, 1150px - 100vw), 140px);
-  }
-
   @media screen and (max-width: ${SCREEN.tablet}) {
-    right: calc(100vw - 588px);
-    bottom: 90px;
+    bottom: 50px;
     gap: 12px;
 
     & > :first-child {
@@ -112,8 +108,7 @@ export const RhobusButtonsWrapper = styled.div`
   }
 
   @media screen and (max-width: ${SCREEN.mobileWide}) {
-    right: calc((580px - 100vw) / 11 * 7);
-    bottom: 60px;
+    bottom: 40px;
     gap: 8px;
 
     & > :first-child {
@@ -125,8 +120,8 @@ export const RhobusButtonsWrapper = styled.div`
     }
   }
 
-  @media screen and (max-width: ${SCREEN.mobile}) {
-    right: 80px;
+  @media screen and (max-width: ${SCREEN.mobileNarrow}) {
+    left: 160px;
   }
 `;
 
@@ -141,16 +136,10 @@ export const RhobusButton = styled.button<RhobusButtonProps>`
   box-sizing: border-box;
   cursor: pointer;
 
-  @media screen and (max-width: ${SCREEN.pc}) {
-    width: 72px;
-    height: 72px;
-    border-width: 6px;
-  }
-
   @media screen and (max-width: ${SCREEN.tablet}) {
-    width: 60px;
-    height: 60px;
-    border-width: 4px;
+    width: 52px;
+    height: 52px;
+    border-width: 6px;
   }
 
   @media screen and (max-width: ${SCREEN.mobileWide}) {

@@ -10,8 +10,9 @@ export const HeaderWrapper = styled.div`
   top: 0;
   left: 0;
   z-index: 2000;
+  backdrop-filter: blur(2px);
   transition: background-color 0.33s ease-in-out;
-/* 
+  /* 
   임시 적용을 위한 주석처리
   &.scrolled{
     background-color: rgba(188, 205, 247, 0.15);

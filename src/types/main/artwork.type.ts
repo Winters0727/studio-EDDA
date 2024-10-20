@@ -8,8 +8,18 @@ export interface ArtworkCharacter {
     ruby: string;
     speechBubbleShadow: string;
     background: string;
+    border: string;
   };
   quotation: string;
+  image: {
+    translateX: {
+      default: number;
+      tablet: number;
+      mobileWide: number;
+      mobile: number;
+      mobileNarrow: number;
+    };
+  };
   imagePaths: {
     standing: string;
     button: string;

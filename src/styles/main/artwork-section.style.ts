@@ -63,6 +63,7 @@ export const ArtworkBackground = styled.div<{
 
 export const ArtworkContent = styled.div`
   display: flex;
+  position: relative;
   justify-content: center;
   width: 100%;
   padding: 0 32px;
