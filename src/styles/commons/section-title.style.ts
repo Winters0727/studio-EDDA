@@ -55,10 +55,6 @@ export const TitleBackground = styled.div`
   height: 35px;
 
   @media screen and (max-width: ${SCREEN.mobileWide}) {
-    height: 25px;
-  }
-
-  @media screen and (max-width: ${SCREEN.mobileNarrow}) {
     height: 15px;
   }
 `;
@@ -78,6 +74,11 @@ export const TItleBackgroundBottom = styled.div<{
   &.edge {
     width: 6px;
     background-color: ${({ $edge }) => $edge || COLOR.mainColor};
+
+    @media screen and (max-width: ${SCREEN.mobileWide}) {
+      height: 25px;
+      transform: translateY(-10px);
+    }
   }
 `;
 
@@ -88,10 +89,6 @@ export const TagWrapper = styled.div`
 
   @media screen and (max-width: ${SCREEN.mobileWide}) {
     height: 25px;
-  }
-
-  @media screen and (max-width: ${SCREEN.mobileNarrow}) {
-    height: 15px;
   }
 `;
 
@@ -106,7 +103,7 @@ export const Tag = styled.div<{ $tag?: string }>`
     border-bottom-left-radius: 10px;
 
     @media screen and (max-width: ${SCREEN.mobileWide}) {
-      padding: 2px 0px 2px 2px;
+      padding: 2px 0px 2px 5px;
     }
   }
 
@@ -116,7 +113,7 @@ export const Tag = styled.div<{ $tag?: string }>`
     border-bottom-right-radius: 10px;
 
     @media screen and (max-width: ${SCREEN.mobileWide}) {
-      padding: 2px 2px 2px 0px;
+      padding: 2px 5px 2px 0px;
     }
   }
 `;

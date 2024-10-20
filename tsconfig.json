@@ -20,6 +20,8 @@
       "@assets/*": ["src/assets/*"],
       "@components/*": ["src/components/*"],
       "@consts/*": ["src/consts/*"],
+      "@contexts/*": ["src/contexts/*"],
+      "@customTypes/*": ["src/types/*"],
       "@data/*": ["src/data/*"],
       "@pages/*": ["src/pages/*"],
       "@styles/*": ["src/styles/*"],

@@ -4,4 +4,8 @@ import { CommonPageWrapper, CommonPage } from "@styles/index.style";
 
 export const PageWrapper = styled(CommonPageWrapper)``;
 
-export const Page = styled(CommonPage)``;
+export const Page = styled(CommonPage)`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
