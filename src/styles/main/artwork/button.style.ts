@@ -76,7 +76,14 @@ export const RhobusButtonsWrapper = styled.div`
   transform: rotate(45deg);
   left: min(70vw, calc(288px + 50vw));
   bottom: 70px;
+  opacity: 0;
+  transition: opacity 1s ease-out;
+  transition-delay: 0.8s;
   z-index: 4;
+
+  &.scrolled {
+    opacity: 1;
+  }
 
   & > :first-child {
     transform: translate(0, 8px);

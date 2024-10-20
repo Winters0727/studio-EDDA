@@ -11,14 +11,18 @@ import {
 import type { FC } from "react";
 
 interface ArtworkCharacterImageProps {
+  className: string;
   color: string;
 }
 
-const ArtworkCharacterButtons: FC<ArtworkCharacterImageProps> = ({ color }) => {
+const ArtworkCharacterButtons: FC<ArtworkCharacterImageProps> = ({
+  className,
+  color,
+}) => {
   const { handleClickCharBtn } = useArtworkContext();
 
   return (
-    <RhobusButtonsWrapper>
+    <RhobusButtonsWrapper className={className}>
       {ARTWORK_BUTTON_IMAGES.map((image, index) => (
         <RhobusButton
           key={`${index + 1}번 캐릭터 버튼`}

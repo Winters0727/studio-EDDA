@@ -71,7 +71,10 @@ const ArtworkSection: FC = () => {
           translateX={char.image.translateX}
           className={entries["artwork"] ? "scrolled" : ""}
         />
-        <ArtworkCharacterButtons color={char.color.main} />
+        <ArtworkCharacterButtons
+          color={char.color.main}
+          className={entries["artwork"] ? "scrolled" : ""}
+        />
       </ArtworkContent>
       <ArtworkBackground $color={char.color.background} />
     </ArtworkWrapper>
