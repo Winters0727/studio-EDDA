@@ -6,6 +6,10 @@ export const HeaderWrapper = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
 `;
 
 export const MainHeader = styled.header`

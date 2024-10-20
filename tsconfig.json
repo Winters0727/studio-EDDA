@@ -25,7 +25,8 @@
       "@data/*": ["src/data/*"],
       "@pages/*": ["src/pages/*"],
       "@styles/*": ["src/styles/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@hooks/*": ["src/hooks/*"]      
     }
   },
   "include": ["src"],
