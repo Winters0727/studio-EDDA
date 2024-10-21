@@ -47,6 +47,7 @@ const Modal: FC<ModalProps> = ({ type, itemId, modalOpen, toggleModal }) => {
             const activeSlide = swiperRef.current.slides[swiperRef.current.activeIndex];
             if (activeSlide && toonWrapperRef.current) {
                 toonWrapperRef.current.scrollTop = 0;
+                swiperRef.current.slideTo(currentPage);
             }
         }
     }, [currentPage]);

@@ -2,40 +2,68 @@ import styled from "styled-components";
 
 import { SCREEN } from "@consts/style";
 
-export const CharacterImageWrapper = styled.div`
-  display: flex;
-  align-items: flex-end;
-  width: fit-content;
-  transform: translateX(-25%);
-  z-index: 3;
+export const CharacterImageContainer = styled.article`
+  position: relative;
+`;
 
-  @media screen and (max-width: ${SCREEN.pc}) {
-    transform: translateX(-28%);
+export const CharacterImageWrapper = styled.div<{
+  $translateX: {
+    default: number;
+    tablet: number;
+    mobileWide: number;
+    mobile: number;
+    mobileNarrow: number;
+  };
+}>`
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  z-index: 3;
+  flex-shrink: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateX(${({ $translateX }) => $translateX.default}px)
+    scaleX(1.4);
+  transition: opacity 1s ease-out;
+  transition-delay: 0.8s;
+
+  @media screen and (max-width: ${SCREEN.tablet}) {
+    transform: translateX(${({ $translateX }) => $translateX.tablet}px)
+      scaleX(1.4);
   }
 
   @media screen and (max-width: ${SCREEN.mobileWide}) {
-    transform: translateX(-36%);
+    transform: translateX(${({ $translateX }) => $translateX.mobileWide}px)
+      scaleX(1.4);
   }
 
   @media screen and (max-width: ${SCREEN.mobile}) {
-    transform: translateX(-36%) translateX(calc(55vw - 198px));
+    transform: translateX(${({ $translateX }) => $translateX.mobile}px)
+      scaleX(1.4);
   }
 
   @media screen and (max-width: ${SCREEN.mobileNarrow}) {
-    transform: translateX(-56%);
+    transform: translateX(${({ $translateX }) => $translateX.mobileNarrow}px)
+      scaleX(1.4);
+  }
+
+  &.scrolled {
+    opacity: 1;
   }
 `;
 
 export const CharacterImage = styled.img`
-  @media screen and (max-width: ${SCREEN.tablet}) {
-    height: calc(800px - (768px - 100vw) / 47 * 75);
-  }
+  transform: translateY(320px) scaleY(1.4);
 
   @media screen and (max-width: ${SCREEN.mobileWide}) {
+    width: auto;
     height: 500px;
+    transform: translateY(220px) scaleY(1.4);
   }
 
-  @media screen and (max-width: ${SCREEN.mobile}) {
-    height: max(400px, calc(140px + 100vw));
+  @media screen and (max-width: ${SCREEN.mobileNarrow}) {
+    width: auto;
+    height: 400px;
+    transform: translateY(300px) scaleY(1.4);
   }
 `;

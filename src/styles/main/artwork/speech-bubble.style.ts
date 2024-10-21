@@ -45,6 +45,7 @@ export const SpeechBubbleText = styled.span<{ $color?: string }>`
   font-weight: 600;
   line-height: 40px;
   text-align: center;
+  word-break: keep-all;
   z-index: 3;
 
   & > strong {

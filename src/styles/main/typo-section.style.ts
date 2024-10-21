@@ -10,19 +10,20 @@ export const TypoWrapper = styled.section`
   align-items: center;
   width: 100%;
   padding: 140px 0;
-  background-color: #b1b3fe33;
+  background: url(/images/main-section01-bg.png) #b1b3fe33 no-repeat center;
+  background-size: cover;
 
   @media screen and (max-width: ${SCREEN.tablet}) {
     padding: 120px 0;
   }
 
   @media screen and (max-width: ${SCREEN.mobileWide}) {
-    padding-top: 200px;
+    padding-top: 130px;
     padding-bottom: 0;
   }
 
   @media screen and (max-width: ${SCREEN.mobileNarrow}) {
-    padding-top: 120px;
+    padding-top: 130px;
     padding-bottom: 0;
   }
 `;
@@ -32,10 +33,11 @@ export const TypoBackgroundWrapper = styled.div`
   width: 100%;
   max-width: 1440px;
   height: 100%;
+  overflow: hidden;
 
   @media screen and (max-width: ${SCREEN.mobileWide}) {
     position: relative;
-    margin-top: calc(400 / 580 * 100%);
+    padding-top: calc(400 / 580 * 100%);
   }
 
   @media screen and (max-width: ${SCREEN.mobile}) {
@@ -45,6 +47,13 @@ export const TypoBackgroundWrapper = styled.div`
 
   @media screen and (max-width: ${SCREEN.mobileNarrow}) {
     margin-top: calc(200 / 250 * 100%);
+  }
+
+  &.scrolled {
+    & > img {
+      opacity: 1;
+      transform: none;
+    }
   }
 `;
 
@@ -56,18 +65,29 @@ export const TypoBackgroundImage = styled.img`
     left: 50px;
     width: 501px;
     height: auto;
+    opacity: 0;
+    transform: translateX(-80px);
+    transition: opacity 1s, transform 1s;
+    transition-delay: 0.5s;
   }
 
   &:nth-child(2) {
     left: 350px;
     width: 724px;
     height: auto;
+    opacity: 0;
+    transform: translateY(80px);
+    transition: opacity 1s, transform 1s;
   }
 
   &:last-child {
     left: 910px;
     width: 454px;
     height: auto;
+    opacity: 0;
+    transform: translateX(80px);
+    transition: opacity 1s, transform 1s;
+    transition-delay: 0.5s;
   }
 
   @media screen and (max-width: 1439px) {
@@ -110,8 +130,10 @@ export const TypoImage = styled.img`
   margin-bottom: 90px;
   width: 692px;
   height: auto;
-  filter: drop-shadow(5px 5px 15px #715eef);
+  filter: drop-shadow(5px 5px 15px #715eef) blur(85px);
   z-index: 2;
+  transition: 1s;
+  transition-delay: 0.8s;
 
   @media screen and (max-width: 1439px) {
     width: calc(692 / 1440 * 100%);
@@ -135,6 +157,10 @@ export const TypoImage = styled.img`
     width: 232px;
     margin-bottom: 70px;
   }
+
+  &.scrolled {
+    filter: drop-shadow(5px 5px 15px #715eef) blur(0);
+  }
 `;
 
 export const TypoTextWrapper = styled.div`
@@ -146,6 +172,10 @@ export const TypoTextWrapper = styled.div`
   line-height: 35px;
   text-align: center;
   z-index: 2;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 1s;
+  transition-delay: 1s;
 
   @media screen and (max-width: ${SCREEN.mobileWide}) {
     font-size: ${FONT.mobile.medium};
@@ -155,6 +185,11 @@ export const TypoTextWrapper = styled.div`
   @media screen and (max-width: ${SCREEN.mobileNarrow}) {
     font-size: ${FONT.mobile.normal};
     line-height: 24px;
+  }
+
+  &.scrolled {
+    opacity: 1;
+    transform: none;
   }
 `;
 

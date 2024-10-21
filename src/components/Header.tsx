@@ -34,6 +34,7 @@ const Header: FC = () => {
 
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const [hamburgerMenusPadTop, setHamburgerMenusPadTop] = useState(0);
+  const [isHeaderScrolled, setIsHeaderScrolled] = useState(false);
 
   const handleOpenMenu = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -70,8 +71,27 @@ const Header: FC = () => {
     };
   }, [handleScrollMobileMenus]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 1) {
+        setIsHeaderScrolled(true);
+      } else {
+        setIsHeaderScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // 컴포넌트가 마운트된 후 한 번 호출하여 초기 상태 설정
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <HeaderWrapper>
+    <HeaderWrapper className={isHeaderScrolled ? "scrolled" : ""}>
       <MainHeader>
         <HeaderLogo src={HeaderLogoImage} alt="로고 이미지" />
         <HeaderNavBar $length={HEADER_LINKS.length}>

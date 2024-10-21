@@ -30,6 +30,17 @@ export const SynopsysWrapper = styled.section<{
     padding: 120px 16px;
     row-gap: 60px;
   }
+
+  &.scrolled > div:first-child {
+    opacity: 1;
+    transform: none;
+  }
+
+  & > div:first-child {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s;
+  }
 `;
 
 export const SynopsysTitleWrapper = styled.div`
@@ -40,6 +51,24 @@ export const SynopsysTitleWrapper = styled.div`
 
   @media screen and (max-width: ${SCREEN.mobileWide}) {
     padding: 0 15px;
+  }
+
+  &.scrolled > * {
+    opacity: 1;
+    transform: none;
+  }
+
+  & > span {
+    opacity: 0;
+    transform: translateX(40px);
+    transition: all 0.8s;
+    transition-delay: 0.6s;
+  }
+
+  & > div {
+    opacity: 0;
+    transition: all 0.8s;
+    transition-delay: 0.8s;
   }
 `;
 
@@ -109,6 +138,18 @@ export const SynopsysParagraph = styled.p`
   @media screen and (max-width: ${SCREEN.mobileWide}) {
     font-size: ${FONT.mobile.normal};
     line-height: 26px;
+  }
+
+  &.scrolled > * {
+    opacity: 1;
+    transform: none;
+  }
+
+  & > span {
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: all 0.8s;
+    transition-delay: 0.6s;
   }
 `;
 

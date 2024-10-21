@@ -127,13 +127,9 @@ a {
   text-decoration: none;
 }
 
+a:link,
 a:hover,
 a:active,
 a:visited {
   color: inherit;
-}
-
-/* 모달 추가 */
-body.modal-open {
-    overflow: hidden;
 }

@@ -9,7 +9,17 @@ export const HeaderWrapper = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 999;
+  z-index: 2000;
+  backdrop-filter: blur(2px);
+  transition: background-color 0.33s ease-in-out;
+  /* 
+  임시 적용을 위한 주석처리
+  &.scrolled{
+    background-color: rgba(188, 205, 247, 0.15);
+    box-shadow: 0px 2px 6px rgba(204, 194, 251, 0.05);
+    backdrop-filter: blur( 32px );   
+    -webkit-backdrop-filter: blur( 32px );
+  } */
 `;
 
 export const MainHeader = styled.header`
@@ -73,7 +83,7 @@ export const HamburgerMenusWrapper = styled.div<{ $padTop?: number }>`
     width: 0;
     height: 100%;
     transition: width 0.33s ease-in-out;
-    z-index: 999;
+    z-index: 9999;
 
     & > * {
       display: none;

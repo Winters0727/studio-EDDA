@@ -30,6 +30,10 @@ export const ModalBox = styled.div`
         max-width: 512px;
         width: 82.5%;
         background: #fff;
+        @media (max-width:767px) {
+            width: calc(100% - 80px);
+            max-width: none;
+        }
     }
     &.video {
         max-width: 1200px;
@@ -77,6 +81,8 @@ export const ModalItemWrapper = styled.div`
         padding-bottom: 0;
         height: 80vh;
         @supports (height: 80svh) {
+            max-width: none;
+            width: 100%;
             height: 80svh;
         }
         max-height: 800px;
