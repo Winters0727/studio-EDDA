@@ -20,7 +20,7 @@ import {
 import type { FC } from "react";
 
 const StudioToon: FC = () => {
-  const IO_THRESHOLD = 0.4;
+  const IO_THRESHOLD = 0.3;
   const TOON_ITEMS = [
     {
       thumbnail: "/images/toon-thumb01.png",
