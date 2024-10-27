@@ -1,4 +1,10 @@
-import { createContext, useCallback, useState, useContext } from "react";
+import {
+  createContext,
+  useCallback,
+  useState,
+  useContext,
+  useEffect,
+} from "react";
 
 import { ARTWORK_CHARACTERS } from "@consts/main";
 
@@ -35,6 +41,35 @@ export const ArtworkProvider = ({
     },
     []
   );
+
+  useEffect(() => {
+    const imagePaths = ARTWORK_CHARACTERS.map((char) =>
+      [
+        char.imagePaths.standing,
+        char.imagePaths.button,
+        char.imagePaths.faces,
+      ].flat(1)
+    ).flat(1);
+
+    const preloadImageAsyncs = imagePaths.map(
+      (imagePath) =>
+        new Promise((resolve, reject) => {
+          try {
+            const image = new Image();
+            image.src = imagePath;
+            resolve(true);
+          } catch (err: any) {
+            reject(err.message);
+          }
+        })
+    );
+
+    const preloadImages = () => Promise.all(preloadImageAsyncs);
+
+    window.addEventListener("load", preloadImages);
+
+    return () => window.removeEventListener("load", preloadImages);
+  }, []);
 
   return (
     <ArtworkContext.Provider
