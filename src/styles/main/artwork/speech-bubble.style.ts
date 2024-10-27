@@ -40,6 +40,8 @@ export const SpeechBubbleTextWrapper = styled.div<{
 `;
 
 export const SpeechBubbleText = styled.span<{ $color?: string }>`
+  padding: 0 32px;
+  max-height: inherit;
   font-family: "Pretendard";
   font-size: 28px;
   font-weight: 600;
@@ -55,12 +57,13 @@ export const SpeechBubbleText = styled.span<{ $color?: string }>`
 
   @media screen and (max-width: ${SCREEN.tablet}) {
     font-size: ${FONT.tablet.medium};
-    line-height: 32px;
+    line-height: 28px;
   }
 
   @media screen and (max-width: ${SCREEN.mobileWide}) {
+    padding: 0 16px;
     font-size: ${FONT.mobile.normal};
-    line-height: 24px;
+    line-height: 20px;
   }
 `;
 
@@ -80,6 +83,7 @@ export const SpeechBubbleDoubleQuote = styled.svg<{
   ${({ $bottom }) => ($bottom ? `bottom: ${$bottom}px` : "")};
   ${({ $rotate }) => ($rotate ? `transform: rotate(${$rotate}deg)` : "")};
   z-index: 3;
+  transition: fill 0.5s ease-out;
 `;
 
 export const SpeechBubbleTriangleImage = styled.img`

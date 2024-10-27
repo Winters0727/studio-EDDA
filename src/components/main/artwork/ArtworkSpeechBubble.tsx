@@ -35,8 +35,8 @@ const ArtworkSpeechBubble: FC<ArtworkSpeechBubbleProps> = ({
       >
         <SpeechBubbleDoubleQuote
           $fill={colors.quote}
-          $left={50}
-          $top={50}
+          $left={30}
+          $top={30}
           width="40"
           height="28"
           viewBox="0 0 40 28"
@@ -51,8 +51,8 @@ const ArtworkSpeechBubble: FC<ArtworkSpeechBubbleProps> = ({
         />
         <SpeechBubbleDoubleQuote
           $fill={colors.quote}
-          $right={50}
-          $bottom={50}
+          $right={30}
+          $bottom={30}
           $rotate={180}
           width="40"
           height="28"
@@ -75,8 +75,8 @@ const ArtworkSpeechBubble: FC<ArtworkSpeechBubbleProps> = ({
       >
         <SpeechBubbleDoubleQuote
           $fill={colors.quote}
-          $left={30}
-          $top={30}
+          $left={20}
+          $top={20}
           width="20"
           height="14"
           viewBox="0 0 20 14"
@@ -91,8 +91,8 @@ const ArtworkSpeechBubble: FC<ArtworkSpeechBubbleProps> = ({
         />
         <SpeechBubbleDoubleQuote
           $fill={colors.quote}
-          $right={30}
-          $bottom={30}
+          $right={20}
+          $bottom={20}
           $rotate={180}
           width="20"
           height="14"

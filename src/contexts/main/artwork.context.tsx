@@ -2,27 +2,28 @@ import {
   createContext,
   useCallback,
   useState,
+  useRef,
   useContext,
   useEffect,
 } from "react";
 
 import { ARTWORK_CHARACTERS } from "@consts/main";
 
+import type { MutableRefObject } from "react";
 import type { ArtworkCharacter } from "@customTypes/main/artwork.type";
 
 interface ArtworkContextProps {
   curChar: ArtworkCharacter;
+  charImageWrapperRef: MutableRefObject<HTMLDivElement | null> | null;
   charLength: number;
-  handleClickCharBtn: (index: number) => (e: React.MouseEvent) => void;
+  clickCharBtn: (index: number) => void;
 }
 
 const ArtworkContext = createContext<ArtworkContextProps>({
   curChar: ARTWORK_CHARACTERS[0],
+  charImageWrapperRef: null,
   charLength: ARTWORK_CHARACTERS.length,
-  handleClickCharBtn: (index: number) => (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-  },
+  clickCharBtn: (index: number) => {},
 });
 
 export const ArtworkProvider = ({
@@ -32,14 +33,24 @@ export const ArtworkProvider = ({
 }) => {
   const [charIndex, setCharIndex] = useState(0);
 
-  const handleClickCharBtn = useCallback(
-    (index: number) => (e: React.MouseEvent) => {
-      e.preventDefault();
-      e.stopPropagation();
+  const imageWrapperRef = useRef<HTMLDivElement | null>(null);
 
-      setCharIndex(index);
+  const clickCharBtn = useCallback(
+    (index: number) => {
+      if (index !== charIndex) {
+        if (imageWrapperRef.current) {
+          const imageWrapperElement = imageWrapperRef.current;
+
+          imageWrapperElement.style.opacity = "0";
+
+          setTimeout(() => {
+            setCharIndex(index);
+            imageWrapperElement.style.opacity = "1";
+          }, 500);
+        }
+      }
     },
-    []
+    [charIndex]
   );
 
   useEffect(() => {
@@ -68,6 +79,23 @@ export const ArtworkProvider = ({
 
     window.addEventListener("load", preloadImages);
 
+    if (imageWrapperRef.current) {
+      const imageWrapperElement = imageWrapperRef.current;
+
+      const changeImageOpacity = () =>
+        (imageWrapperElement.style.opacity = "1");
+
+      imageWrapperElement.addEventListener("animationend", changeImageOpacity);
+
+      return () => {
+        window.removeEventListener("load", preloadImages);
+        imageWrapperElement.removeEventListener(
+          "animationend",
+          changeImageOpacity
+        );
+      };
+    }
+
     return () => window.removeEventListener("load", preloadImages);
   }, []);
 
@@ -75,8 +103,9 @@ export const ArtworkProvider = ({
     <ArtworkContext.Provider
       value={{
         curChar: ARTWORK_CHARACTERS[charIndex],
+        charImageWrapperRef: imageWrapperRef,
         charLength: ARTWORK_CHARACTERS.length,
-        handleClickCharBtn,
+        clickCharBtn,
       }}
     >
       {children}

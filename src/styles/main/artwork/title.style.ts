@@ -34,6 +34,7 @@ export const TitleRubyText = styled.rt<{ $color: string }>`
   color: ${({ $color }) => $color};
   font-size: 32px;
   line-height: inherit;
+  transition: color 1s ease-out;
 
   @media screen and (max-width: ${SCREEN.tablet}) {
     font-size: ${FONT.tablet.subTitle};
@@ -50,6 +51,7 @@ export const TitleBackground = styled.div<{ $background: string }>`
   width: 100%;
   height: 22px;
   background-color: ${({ $background }) => $background};
+  transition: background-color 1s ease-out;
 
   @media screen and (max-width: ${SCREEN.tablet}) {
     height: 18px;

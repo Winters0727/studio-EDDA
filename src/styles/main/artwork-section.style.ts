@@ -52,6 +52,7 @@ export const ArtworkBackground = styled.div<{
     width: 100%;
     height: 100%;
     background-color: ${({ $color }) => $color};
+    transition: background-color 1s ease-out;
     -webkit-clip-path: polygon(100% 0%, 100% 100%, 0% 100%);
     clip-path: polygon(100% 0%, 100% 100%, 0% 100%);
   }

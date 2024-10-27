@@ -1,3 +1,5 @@
+import { useArtworkContext } from "@contexts/main/artwork.context";
+
 import {
   CharacterImage,
   CharacterImageContainer,
@@ -25,9 +27,15 @@ const ArtworkCharacterImage: FC<ArtworkCharacterImageProps> = ({
   className,
   translateX,
 }) => {
+  const { charImageWrapperRef } = useArtworkContext();
+
   return (
     <CharacterImageContainer>
-      <CharacterImageWrapper className={className} $translateX={translateX}>
+      <CharacterImageWrapper
+        ref={charImageWrapperRef}
+        className={className}
+        $translateX={translateX}
+      >
         <CharacterImage src={path} alt={`${name} 스탠딩 이미지`} />
       </CharacterImageWrapper>
     </CharacterImageContainer>
