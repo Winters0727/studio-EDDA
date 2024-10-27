@@ -17,7 +17,9 @@ import TypoSvg from "@assets/images/svgs/typo.svg";
 import type { FC } from "react";
 
 const TypoSection: FC = () => {
-  const { targetRefs, entries } = useIntersectionObserver(0.1);
+  const IO_THRESHOLD = 0.1;
+
+  const { targetRefs, entries } = useIntersectionObserver(IO_THRESHOLD);
 
   return (
     <TypoWrapper

@@ -19,8 +19,10 @@ import {
 import type { FC } from "react";
 
 const ArtworkSection: FC = () => {
+  const IO_THRESHOLD = 0.5;
+
   const { curChar: char } = useArtworkContext();
-  const { targetRefs, entries } = useIntersectionObserver(0.5);
+  const { targetRefs, entries } = useIntersectionObserver(IO_THRESHOLD);
 
   return (
     <ArtworkWrapper

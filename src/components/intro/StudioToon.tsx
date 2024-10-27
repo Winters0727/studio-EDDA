@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+
+import SectionTitle from "@components/commons/SectionTitle";
+import Modal from "@components/commons/Modal";
+
 import { useModal } from "@hooks/modal.hook";
 import useIntersectionObserver from "@hooks/scroll.hook";
-import SectionTitle from "@components/commons/SectionTitle";
+
 import {
   StudioToonBox,
   StudioToonWrapper,
@@ -12,11 +16,11 @@ import {
   ToonInfo,
   ToonVisual,
 } from "@styles/intro/index.style";
-import Modal from "@components/commons/Modal";
 
 import type { FC } from "react";
 
-const StudioToon: FC<{ scrollY: number }> = ({ scrollY }) => {
+const StudioToon: FC = () => {
+  const IO_THRESHOLD = 0.4;
   const TOON_ITEMS = [
     {
       thumbnail: "/images/toon-thumb01.png",
@@ -38,7 +42,7 @@ const StudioToon: FC<{ scrollY: number }> = ({ scrollY }) => {
     itemNumber: itemId || 0,
     setItemId,
   });
-  const { targetRefs, entries } = useIntersectionObserver(0.6);
+  const { targetRefs, entries } = useIntersectionObserver(IO_THRESHOLD);
 
   useEffect(() => {
     const toonItemWrapper = document.querySelector("#toon-item-wrapper");
