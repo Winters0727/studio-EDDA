@@ -14,7 +14,7 @@ export const FaceButtonsWrapper = styled.aside`
   @media screen and (max-width: ${SCREEN.pc}) {
     flex-direction: column;
     gap: 15px;
-    margin-left: 15%;
+    margin-left: 60px;
     margin-bottom: 50px;
   }
 

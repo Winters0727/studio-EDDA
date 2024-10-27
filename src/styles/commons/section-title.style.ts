@@ -31,6 +31,7 @@ export const TitleText = styled.span<{ $color?: string }>`
   font-size: ${FONT.pc.header};
   font-weight: 600;
   line-height: 48px;
+  transition: color 1s ease-out;
   z-index: 999;
 
   @media screen and (max-width: ${SCREEN.tablet}) {
@@ -64,6 +65,7 @@ export const TItleBackgroundBottom = styled.div<{
   $edge?: string;
 }>`
   height: 100%;
+  transition: background-color 1s ease-out;
 
   &.middle {
     width: 100%;
@@ -96,6 +98,7 @@ export const Tag = styled.div<{ $tag?: string }>`
   display: flex;
   background-color: ${({ $tag }) => $tag || COLOR.mainColor};
   color: ${COLOR.white};
+  transition: background-color 1s ease-out, color 1s ease-out;
 
   &.left {
     padding: 5px 0px 5px 5px;

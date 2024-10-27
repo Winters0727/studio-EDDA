@@ -19,7 +19,14 @@ const ArtworkCharacterButtons: FC<ArtworkCharacterImageProps> = ({
   className,
   color,
 }) => {
-  const { handleClickCharBtn } = useArtworkContext();
+  const { clickCharBtn } = useArtworkContext();
+
+  const handleClickCharBtn = (index: number) => (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    clickCharBtn(index);
+  };
 
   return (
     <RhobusButtonsWrapper className={className}>

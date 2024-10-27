@@ -18,7 +18,7 @@ const MainPage: FC = () => {
         <Helmet>
           <title>{TITLE}</title>
         </Helmet>
-        <TypoSection />        
+        <TypoSection />
         <SynopsysSection />
         <ArtworkProvider>
           <ArtworkSection />

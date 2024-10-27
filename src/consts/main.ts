@@ -41,11 +41,11 @@ export const ARTWORK_CHARACTERS: ArtworkCharacter[] = [
       "올림포스 12신,<br/>그중에서도 가장 훌륭하고 가장 정의로운 최고신!<br/>만물의 아버지, 아니 어머니 <strong>제우스</strong>이니라!",
     image: {
       translateX: {
-        default: -100,
-        tablet: -100,
-        mobileWide: -60,
-        mobile: -70,
-        mobileNarrow: -120,
+        default: -160,
+        tablet: -180,
+        mobileWide: -90,
+        mobile: -100,
+        mobileNarrow: -140,
       },
     },
     imagePaths: {
@@ -99,11 +99,11 @@ export const ARTWORK_CHARACTERS: ArtworkCharacter[] = [
       "사기, 기망, 장난, 거짓말<br/>사람의 마음을 가지고 노는 건 언제나 즐거웠지.<br/>후후, <strong>로키</strong>라고 해.<br/>매니저, 넌 어떤 식으로 날 즐겁게 해주려나?",
     image: {
       translateX: {
-        default: -80,
-        tablet: -80,
-        mobileWide: -40,
-        mobile: -50,
-        mobileNarrow: -110,
+        default: -160,
+        tablet: -160,
+        mobileWide: -100,
+        mobile: -100,
+        mobileNarrow: -160,
       },
     },
     imagePaths: {

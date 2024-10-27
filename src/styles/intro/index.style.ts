@@ -579,8 +579,8 @@ export const ToonDetail = styled.p`
   }
 `;
 
-export const ToonItemWrapper = styled.div.attrs((props) => ({}))<{
-  childrenCount: number;
+export const ToonItemWrapper = styled.div<{
+  $childrenCount: number;
 }>`
   display: flex;
   justify-content: center;
@@ -627,7 +627,7 @@ export const ToonItemWrapper = styled.div.attrs((props) => ({}))<{
   }
 
   ${(props) =>
-    props.childrenCount <= 1 &&
+    props.$childrenCount <= 1 &&
     `
 
         @media (max-width: 1169px) {
@@ -671,7 +671,7 @@ export const ToonItemWrapper = styled.div.attrs((props) => ({}))<{
         }
     `}
   ${(props) =>
-    props.childrenCount >= 2 &&
+    props.$childrenCount >= 2 &&
     `
         position: relative;
 
@@ -703,8 +703,8 @@ export const ToonItemWrapper = styled.div.attrs((props) => ({}))<{
     `}
 
         ${(props) =>
-    props.childrenCount % 2 !== 0 &&
-    props.childrenCount > 1 &&
+    props.$childrenCount % 2 !== 0 &&
+    props.$childrenCount > 1 &&
     `
         @media (max-width: 768px) {
             justify-content: space-between;
@@ -734,8 +734,8 @@ export const ToonItemWrapper = styled.div.attrs((props) => ({}))<{
         }
         `}
     ${(props) =>
-    props.childrenCount % 2 === 0 &&
-    props.childrenCount > 1 &&
+    props.$childrenCount % 2 === 0 &&
+    props.$childrenCount > 1 &&
     `
             @media (max-width: 768px) {
                 justify-content: space-between;

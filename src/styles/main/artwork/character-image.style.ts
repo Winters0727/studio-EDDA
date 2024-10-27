@@ -1,9 +1,19 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 import { SCREEN } from "@consts/style";
 
 export const CharacterImageContainer = styled.article`
   position: relative;
+`;
+
+const scrolledAnimation = keyframes`
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 `;
 
 export const CharacterImageWrapper = styled.div<{
@@ -24,8 +34,7 @@ export const CharacterImageWrapper = styled.div<{
   overflow: hidden;
   transform: translateX(${({ $translateX }) => $translateX.default}px)
     scaleX(1.4);
-  transition: opacity 1s ease-out;
-  transition-delay: 0.8s;
+  transition: opacity 0.5s ease-out;
 
   @media screen and (max-width: ${SCREEN.tablet}) {
     transform: translateX(${({ $translateX }) => $translateX.tablet}px)
@@ -48,7 +57,8 @@ export const CharacterImageWrapper = styled.div<{
   }
 
   &.scrolled {
-    opacity: 1;
+    animation: ${scrolledAnimation} 1s ease-out;
+    animation-delay: 0.8s;
   }
 `;
 

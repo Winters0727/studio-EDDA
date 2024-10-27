@@ -20,6 +20,15 @@ export interface ArtworkCharacter {
       mobileNarrow: number;
     };
   };
+  font?: {
+    lineHeight?: {
+      default?: number;
+      tablet?: number;
+      mobileWide?: number;
+      mobile?: number;
+      mobileNarrow?: number;
+    };
+  };
   imagePaths: {
     standing: string;
     button: string;
