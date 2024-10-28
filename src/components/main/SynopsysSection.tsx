@@ -16,8 +16,9 @@ import type { FC } from "react";
 import { COLOR } from "@consts/style";
 
 const SynopsysSection: FC = () => {
-  const { targetRefs, entries } = useIntersectionObserver(0.6);
   const OPACITY = 0.25;
+
+  const { targetRefs, entries } = useIntersectionObserver(0.6);
 
   return (
     <SynopsysWrapper
