@@ -61,7 +61,7 @@ const Modal: FC<ModalProps> = ({ type, itemId, modalOpen, toggleModal }) => {
                 {type === "toon" ? (
                     <ModalItemWrapper className={type === "toon" ? "toon" : "video"}>
                         <ModalCloseButton onClick={toggleModal} className={type === "toon" ? "toon" : "video"}>
-                            X
+                            &nbsp;
                         </ModalCloseButton>
                         <ToonWrapper ref={toonWrapperRef}>
                             {pages === 0 ? (
@@ -110,7 +110,7 @@ const Modal: FC<ModalProps> = ({ type, itemId, modalOpen, toggleModal }) => {
                 ) : (
                     <ModalItemWrapper className={type === "toon" ? "toon" : "video"}>
                         <ModalCloseButton onClick={toggleModal} className={type === "toon" ? "toon" : "video"}>
-                            X
+                            &nbsp;
                         </ModalCloseButton>
                         <ModalVideoWrapper>
                             <iframe
