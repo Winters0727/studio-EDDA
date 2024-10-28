@@ -67,6 +67,7 @@ const StudioToon: FC = () => {
     if (itemId !== null) {
       toggleModal();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itemId]);
 
   return (
