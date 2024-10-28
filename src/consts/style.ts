@@ -1,7 +1,7 @@
 type MainScreens = "mobile" | "tablet" | "pc";
 type Screens = "mobileNarrow" | "mobile" | "mobileWide" | "tablet" | "pc";
 type ScreenWidth = {
-  [screen in Screens]: number;
+  [screen in Screens]: string;
 };
 type FontSize = "normal" | "medium" | "subTitle" | "title" | "header";
 type Font = {
@@ -9,7 +9,7 @@ type Font = {
     [size in FontSize]: string;
   };
 };
-type Radius = {
+type BorderRadius = {
   [screen in MainScreens]: string;
 };
 
@@ -18,14 +18,14 @@ interface Color {
 }
 
 // 스크린 최대 너비는 2440으로 변경될 수도 있음
-export const SCREEN_MAX_WIDTH = 1920;
+export const SCREEN_MAX_WIDTH = "1920px";
 
 export const SCREEN: ScreenWidth = {
-  mobileNarrow: 250,
-  mobile: 360,
-  mobileWide: 580,
-  tablet: 768,
-  pc: 1200,
+  mobileNarrow: "250px",
+  mobile: "360px",
+  mobileWide: "580px",
+  tablet: "768px",
+  pc: "1200px",
 };
 
 export const COLOR: Color = {
@@ -71,7 +71,7 @@ export const FONT: Font = {
   },
 };
 
-export const RADIUS: Radius = {
+export const BORDER_RADIUS: BorderRadius = {
   pc: "30px",
   tablet: "26px",
   mobile: "16px",

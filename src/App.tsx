@@ -1,4 +1,5 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { useLayoutEffect } from "react";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 
 import Header from "@components/Header";
 import Footer from "@components/Footer";
@@ -11,6 +12,12 @@ import "./App.css";
 import "./font.css";
 
 const App = () => {
+  const location = useLocation();
+
+  useLayoutEffect(() => {
+    document.documentElement.scrollTo({ top: 0, left: 0 });
+  }, [location.pathname]);
+
   return (
     <div className="app">
       <Meta />

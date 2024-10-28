@@ -11,6 +11,7 @@ const Meta: FC = () => {
         <meta name="title" content={META.title} />
         <meta name="description" content={META.description} />
         <meta name="url" content={META.url} />
+        <meta name="viewport" content={META.viewport} />
         {META.author && <meta name="author" content={META.author} />}
         {META.themeColor && (
           <meta name="theme-color" content={META.themeColor} />

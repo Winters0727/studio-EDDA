@@ -1,15 +1,24 @@
 interface HeaderLinks {
-  text: string;
+  text: {
+    kor: string;
+    eng: string;
+  };
   to: string;
 }
 
 export const HEADER_LINKS: HeaderLinks[] = [
   {
-    text: "메인",
+    text: {
+      kor: "메인",
+      eng: "main",
+    },
     to: "/",
   },
   {
-    text: "스튜디오 소개",
+    text: {
+      kor: "스튜디오 소개",
+      eng: "studio edda",
+    },
     to: "/intro",
   },
 ];
