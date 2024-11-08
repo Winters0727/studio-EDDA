@@ -21,6 +21,7 @@ import type { FC } from "react";
 
 const StudioToon: FC = () => {
   const IO_THRESHOLD = 0.3;
+
   const TOON_ITEMS = [
     {
       thumbnail: "/images/toon-thumb01.png",
@@ -33,6 +34,10 @@ const StudioToon: FC = () => {
     {
       thumbnail: "/images/toon-thumb03.png",
       title: "스튜디오 함부기",
+    },
+    {
+      thumbnail: "/images/toon-thumb04.png",
+      title: "에다 처벌내규",
     },
   ];
 
