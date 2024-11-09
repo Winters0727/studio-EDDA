@@ -1,4 +1,4 @@
-import { useState, useEffect, forwardRef } from "react";
+import { useState, useEffect, forwardRef, memo } from "react";
 import { createPortal } from "react-dom";
 import _ from "lodash";
 
@@ -8,29 +8,39 @@ import {
   ModalWrapper,
 } from "@styles/commons/new-modal.style";
 
-interface ModalStyles {
-  backgroundColor?: string;
-  opacity?: number;
-  left?: number;
-  right?: number;
-  top?: number;
-  bottom?: number;
-  width?: number;
-  height?: number;
-  padding?: number;
+interface ContainerStyles {
+  toggleTime?: number;
   verticalAlign?: string;
   horizontalAlign?: string;
 }
 
+interface BackgroundStyles {
+  backgroundColor?: string;
+  opacity?: number;
+}
+
+interface ArticleStyles {
+  left?: number;
+  right?: number;
+  top?: number;
+  bottom?: number;
+  width?: number | string;
+  height?: number | string;
+  padding?: number;
+}
+
+type ModalStyles = ContainerStyles & BackgroundStyles & ArticleStyles;
+
 interface ModalProps {
+  displayModal: boolean;
   isModalOpen: boolean;
   children: React.ReactNode;
   styles?: ModalStyles;
-  key?: string | null;
+  portalKey?: string | null;
 }
 
 const NewModal = forwardRef<HTMLDivElement, ModalProps>(
-  ({ children, styles, key }, ref) => {
+  ({ displayModal, children, styles, portalKey }, ref) => {
     const SCROLL_DEBOUNCE_TIME = 1000;
 
     const [top, setTop] = useState(0);
@@ -48,33 +58,39 @@ const NewModal = forwardRef<HTMLDivElement, ModalProps>(
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    return createPortal(
-      <ModalContainer
-        ref={ref}
-        $top={top}
-        $horizontalAlign={styles?.horizontalAlign}
-        $verticalAlign={styles?.verticalAlign}
-      >
-        <ModalBackground
-          $backgroundColor={styles?.backgroundColor}
-          $opacity={styles?.opacity}
-        />
-        <ModalWrapper
-          $left={styles?.left}
-          $right={styles?.right}
-          $top={styles?.top}
-          $bottom={styles?.bottom}
-          $width={styles?.width}
-          $height={styles?.height}
-          $padding={styles?.padding}
+    return displayModal ? (
+      createPortal(
+        <ModalContainer
+          ref={ref}
+          className="show"
+          $top={top}
+          $toggleTime={styles?.toggleTime}
+          $horizontalAlign={styles?.horizontalAlign}
+          $verticalAlign={styles?.verticalAlign}
         >
-          {children}
-        </ModalWrapper>
-      </ModalContainer>,
-      document.body,
-      key || "modal"
+          <ModalBackground
+            $backgroundColor={styles?.backgroundColor}
+            $opacity={styles?.opacity}
+          />
+          <ModalWrapper
+            $left={styles?.left}
+            $right={styles?.right}
+            $top={styles?.top}
+            $bottom={styles?.bottom}
+            $width={styles?.width}
+            $height={styles?.height}
+            $padding={styles?.padding}
+          >
+            {children}
+          </ModalWrapper>
+        </ModalContainer>,
+        document.body,
+        portalKey || "modal"
+      )
+    ) : (
+      <></>
     );
   }
 );
 
-export default NewModal;
+export default memo(NewModal);

@@ -7,6 +7,7 @@ export const useModal = (
   ref: MutableRefObject<HTMLDivElement | null>,
   throttleTime: number = 0
 ) => {
+  const [displayModal, setDisplayModal] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [toggleDisabled, setToggleDisabled] = useState(false);
 
@@ -20,19 +21,16 @@ export const useModal = (
 
     const timeDiff = dayjs(currentTime).diff(prevCallFuncTime.current);
 
-    if (!toggleDisabled && throttleTime <= timeDiff && ref.current) {
+    if (!toggleDisabled && throttleTime <= timeDiff) {
       prevCallFuncTime.current = currentTime;
 
-      const modalElement = ref.current;
-
-      if (isModalOpen) {
-        document.body.style.overflow = "auto";
-        modalElement.classList.remove("show");
-        modalElement.classList.add("hide");
+      if (ref.current) {
+        const element = ref.current;
+        element.classList.remove("show");
+        element.classList.add("hide");
       } else {
+        setDisplayModal(true);
         document.body.style.overflow = "hidden";
-        modalElement.classList.remove("hide");
-        modalElement.classList.add("show");
       }
 
       setIsModalOpen((prev) => !prev);
@@ -48,6 +46,12 @@ export const useModal = (
       };
 
       const onAnimationCancelAndEnd = () => {
+        if (element.classList.contains("hide")) {
+          element.classList.remove("hide");
+          document.body.style.overflow = "auto";
+          setDisplayModal(false);
+        }
+
         setToggleDisabled(false);
       };
 
@@ -61,9 +65,11 @@ export const useModal = (
         element.removeEventListener("animationend", onAnimationCancelAndEnd);
       };
     }
-  }, [ref]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ref.current]);
 
   return {
+    displayModal,
     isModalOpen,
     toggleModal,
   };

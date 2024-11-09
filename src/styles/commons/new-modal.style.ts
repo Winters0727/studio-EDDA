@@ -81,8 +81,9 @@ export const ModalWrapper = styled.article<{
   $right?: number;
   $top?: number;
   $bottom?: number;
-  $width?: number;
-  $height?: number;
+  $width?: number | string;
+  $height?: number | string;
+  $margin?: number;
   $padding?: number;
   $verticalAlign?: boolean;
   $horizontalAlign?: boolean;
@@ -100,7 +101,22 @@ export const ModalWrapper = styled.article<{
   ${({ $bottom, $verticalAlign }) =>
     $bottom && !$verticalAlign ? `bottom: ${$bottom}px;` : ""}
 
-  ${({ $width }) => ($width ? `width: ${$width}px;` : "")}
-  ${({ $height }) => ($height ? `height: ${$height}px;` : "")}
+  ${({ $width }) => {
+    if ($width) {
+      return typeof $width === "number" ? `${$width}px` : $width;
+    }
+
+    return "";
+  }}
+  ${({ $height }) => {
+    if ($height) {
+      return typeof $height === "number" ? `${$height}px` : $height;
+    }
+
+    return "";
+  }}
+
+
+  ${({ $margin }) => ($margin ? `padding: ${$margin}px;` : "")}
   ${({ $padding }) => ($padding ? `padding: ${$padding}px;` : "")}
 `;
