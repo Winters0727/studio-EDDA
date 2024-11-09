@@ -9,7 +9,7 @@ export const HeaderWrapper = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 2000;
+  z-index: 999;
   backdrop-filter: blur(2px);
   transition: background-color 0.33s ease-in-out;
   /* 
