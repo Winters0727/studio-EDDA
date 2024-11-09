@@ -34,6 +34,7 @@ const hideModalAnimation = keyframes`
 
 export const ModalContainer = styled.div<{
   $top: number;
+  $toggleTime?: number;
   $verticalAlign?: string;
   $horizontalAlign?: string;
 }>`
@@ -51,11 +52,13 @@ export const ModalContainer = styled.div<{
     $verticalAlign ? `align-items: ${$verticalAlign};` : ""}
 
   &.show {
-    animation: ${showModalAnimation} 1s forwards;
+    animation: ${showModalAnimation} ${({ $toggleTime }) => $toggleTime || 1}s
+      forwards;
   }
 
   &.hide {
-    animation: ${hideModalAnimation} 1s forwards;
+    animation: ${hideModalAnimation} ${({ $toggleTime }) => $toggleTime || 1}s
+      forwards;
   }
 `;
 
