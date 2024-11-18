@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 import SectionTitle from "@components/commons/SectionTitle";
-import Modal from "@components/commons/Modal";
+import ToonModal from "./toon/ToonModal";
 
-import { useModal } from "@hooks/modal.hook";
+import { useModal } from "@hooks/new-modal.hook";
 import useIntersectionObserver from "@hooks/scroll.hook";
 
 import {
@@ -19,39 +19,49 @@ import {
 
 import type { FC } from "react";
 
-const StudioToon: FC = () => {
-  const IO_THRESHOLD = 0.3;
+interface ToonItemData {
+  title: string;
+  pageCount: number;
+}
 
-  const TOON_ITEMS = [
+const NewStudioToon: FC = () => {
+  const IO_THRESHOLD = 0.3;
+  const TOON_ITEMS: ToonItemData[] = [
     {
-      thumbnail: "/images/toon-thumb01.png",
       title: "DXI 개발하는 많화",
+      pageCount: 1,
     },
     {
-      thumbnail: "/images/toon-thumb02.png",
       title: "로키 디자인 회의",
+      pageCount: 3,
     },
     {
-      thumbnail: "/images/toon-thumb03.png",
       title: "스튜디오 함부기",
+      pageCount: 1,
     },
     {
-      thumbnail: "/images/toon-thumb04.png",
       title: "에다 처벌내규",
+      pageCount: 1,
     },
     {
-      thumbnail: "/images/toon-thumb05.png",
       title: "아폴론의 평상복",
+      pageCount: 1,
     },
   ];
 
   const [childrenCount, setChildrenCount] = useState(0);
-  const [itemId, setItemId] = useState<number | null>(null);
-  const { isModalOpen, toggleModal } = useModal({
-    itemNumber: itemId || 0,
-    setItemId,
-  });
+  const [itemId, setItemId] = useState(0);
+
+  const modalRef = useRef<HTMLDivElement | null>(null);
+
+  const { displayModal, isModalOpen, toggleModal } = useModal(modalRef, 1500);
+
   const { targetRefs, entries } = useIntersectionObserver(IO_THRESHOLD);
+
+  const handleClickItem = (itemId: number) => (e: React.MouseEvent) => {
+    setItemId(itemId);
+    toggleModal(e);
+  };
 
   useEffect(() => {
     const toonItemWrapper = document.querySelector("#toon-item-wrapper");
@@ -61,33 +71,17 @@ const StudioToon: FC = () => {
     }
   }, []);
 
-  const handleItemClick = (id: number) => {
-    if (itemId === id) {
-      setItemId(null);
-      setTimeout(() => {
-        setItemId(id);
-      }, 0);
-    } else {
-      setItemId(id);
-    }
-  };
-
-  useEffect(() => {
-    if (itemId !== null) {
-      toggleModal();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [itemId]);
-
   return (
     <StudioToonBox
       ref={(el) => (targetRefs.current[0] = el as HTMLDivElement)}
       id="toon"
     >
-      <Modal
-        type="toon"
-        itemId={itemId || 0}
-        modalOpen={isModalOpen}
+      <ToonModal
+        itemId={itemId}
+        pages={TOON_ITEMS[itemId].pageCount}
+        modalRef={modalRef}
+        displayModal={displayModal}
+        isModalOpen={isModalOpen}
         toggleModal={toggleModal}
       />
 
@@ -116,10 +110,12 @@ const StudioToon: FC = () => {
           {TOON_ITEMS.map((toon, index) => (
             <ToonItem
               key={`EDDA Toon - ${index}`}
-              onClick={() => handleItemClick(index)}
+              onClick={handleClickItem(index)}
             >
               <img
-                src={toon.thumbnail}
+                src={`/images/toon-thumb${(index + 1)
+                  .toString()
+                  .padStart(2, "0")}.png`}
                 alt={`EDDA Toon - ${index} thumbnail`}
               />
               <ToonInfo>
@@ -132,10 +128,9 @@ const StudioToon: FC = () => {
           ))}
         </ToonItemWrapper>
       </StudioToonWrapper>
-
       <ToonVisual />
     </StudioToonBox>
   );
 };
 
-export default StudioToon;
+export default NewStudioToon;

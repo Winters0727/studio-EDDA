@@ -582,7 +582,7 @@ export const ToonDetail = styled.p`
 export const ToonItemWrapper = styled.div<{
   $childrenCount: number;
 }>`
-  display: flex;
+  display: grid;
   justify-content: center;
   width: auto;
   max-width: 1170px;
@@ -591,6 +591,7 @@ export const ToonItemWrapper = styled.div<{
   position: relative;
   box-sizing: border-box;
   transform: translateX(50px);
+  grid-template-columns: repeat(4, 1fr);
   opacity: 0;
   transition: all 1s;
   transition-delay: 0.8s;
@@ -601,12 +602,15 @@ export const ToonItemWrapper = styled.div<{
   }
 
   @media (max-width: 1169px) {
-    width: 66.66%;
+    width: 90%;
     gap: 16px;
     flex-wrap: wrap;
   }
+
   @media (max-width: 768px) {
+    display: flex;
     width: 100%;
+    max-width: 640px;
     gap: 30px;
     flex-direction: column;
     padding: 0 16px;
@@ -766,7 +770,7 @@ export const ToonItemWrapper = styled.div<{
 `;
 
 export const ToonItem = styled.a`
-  width: 25%;
+  width: 100%;
   height: 300px;
   border-radius: ${BORDER_RADIUS.pc};
   background: #fff;
@@ -774,7 +778,7 @@ export const ToonItem = styled.a`
   cursor: pointer;
 
   @media (max-width: 1168px) {
-    width: calc(50% - 8px);
+    width: calc(100% - 8px);
     height: 260px;
   }
   @media (max-width: 768px) {
