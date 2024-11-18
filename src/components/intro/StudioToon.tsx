@@ -39,6 +39,10 @@ const StudioToon: FC = () => {
       thumbnail: "/images/toon-thumb04.png",
       title: "에다 처벌내규",
     },
+    {
+      thumbnail: "/images/toon-thumb05.png",
+      title: "아폴론의 평상복",
+    },
   ];
 
   const [childrenCount, setChildrenCount] = useState(0);

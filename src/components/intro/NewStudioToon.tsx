@@ -43,6 +43,10 @@ const NewStudioToon: FC = () => {
       title: "에다 처벌내규",
       pageCount: 1,
     },
+    {
+      title: "아폴론의 평상복",
+      pageCount: 1,
+    },
   ];
 
   const [childrenCount, setChildrenCount] = useState(0);
