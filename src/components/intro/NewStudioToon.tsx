@@ -47,6 +47,10 @@ const NewStudioToon: FC = () => {
       title: "아폴론의 평상복",
       pageCount: 1,
     },
+    {
+      title: "우주의 균형",
+      pageCount: 1,
+    },
   ];
 
   const [childrenCount, setChildrenCount] = useState(0);
