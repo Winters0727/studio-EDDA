@@ -25,7 +25,7 @@ interface ToonItemData {
 }
 
 const NewStudioToon: FC = () => {
-  const IO_THRESHOLD = 0.3;
+  const IO_THRESHOLD = 0.2;
   const TOON_ITEMS: ToonItemData[] = [
     {
       title: "DXI 개발하는 많화",
