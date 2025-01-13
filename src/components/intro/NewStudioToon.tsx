@@ -25,7 +25,7 @@ interface ToonItemData {
 }
 
 const NewStudioToon: FC = () => {
-  const IO_THRESHOLD = 0.2;
+  const IO_THRESHOLD = 0.1;
   const TOON_ITEMS: ToonItemData[] = [
     {
       title: "DXI 개발하는 많화",
@@ -49,6 +49,18 @@ const NewStudioToon: FC = () => {
     },
     {
       title: "우주의 균형",
+      pageCount: 1,
+    },
+    {
+      title: "이야기의 시작",
+      pageCount: 1,
+    },
+    {
+      title: "낙천 후의 세계",
+      pageCount: 1,
+    },
+    {
+      title: "아이돌 실격",
       pageCount: 1,
     },
   ];
