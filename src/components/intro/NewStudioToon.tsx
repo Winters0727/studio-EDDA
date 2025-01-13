@@ -51,6 +51,18 @@ const NewStudioToon: FC = () => {
       title: "우주의 균형",
       pageCount: 1,
     },
+    {
+      title: "이야기의 시작",
+      pageCount: 1,
+    },
+    {
+      title: "낙천 후의 세계",
+      pageCount: 1,
+    },
+    {
+      title: "아이돌 실격",
+      pageCount: 1,
+    },
   ];
 
   const [childrenCount, setChildrenCount] = useState(0);
